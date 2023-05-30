@@ -2,7 +2,7 @@ clear
 clc
 
 s = 0.01;
-T0 = 50;
+T0 = 2;
 hold on
 t0 = -40:s:40;
 v0 = zeros(1, length(t0));
