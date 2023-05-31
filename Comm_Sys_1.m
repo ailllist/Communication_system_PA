@@ -10,5 +10,5 @@ s = 0.01;
 
 [t, amp, phz] = FT(v, s); % 이건 맞음.
 
-plot(t, amp)
-%plot(t, phz)
+%plot(t, amp)
+%stem(t, phz)
