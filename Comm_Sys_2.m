@@ -38,7 +38,7 @@ res = res/scale_fac;
 
 minx = min(x);
 maxx = max(x);
-numofbit = 16;
+numofbit = 4;
 totslot = 2^numofbit;
 step_size = (maxx-minx) / (2*(totslot-1));
 epochs = 10; % num of iteration
