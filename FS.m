@@ -1,4 +1,4 @@
-function [t, amp, phz] = FS(x, s, T0)
+function [t, amp, phz] = FS(x, s, T0, k_max)
     tot = (length(x)-1) * s; % 총 시간
 
     t = -tot/2:s:tot/2; % time
@@ -14,23 +14,28 @@ function [t, amp, phz] = FS(x, s, T0)
         fun_v(cnt) = x(i);  % 0을 중심을 하는 1주기 함수 추출
         cnt = cnt+1;
     end
-
+    
     n = length(fun_v) - 1;  % 구분구적법의 n
-    k_list = -10:1:10;  % k는 -10 ~ 10
+    k_list = -k_max:1:k_max;  % C_k의 개수
     c_k = zeros(1, length(k_list));  % c_k를 저장할 배열
     cnt = 1;
+
+    % c_k 생성
     for k = k_list
         exp_sig = fun_v.*exp(-j*2*pi*k*fun_t*(1/T0));  % x(t)*exp
         c_k(cnt) = (1/T0)*sum(exp_sig)*(T0/n);
         cnt = cnt+1;
     end
+
     cnt = 1;
-    for k = k_list;
+    % c_k를 기반으로 신호 재생성
+    for k = k_list
         coeff = c_k(cnt);
         kth_sig = coeff * exp(j*2*pi*k*t*(1/T0));
         res = res + kth_sig;
+        cnt = cnt+1;
     end
-
+    c_k
     amp = abs(res);
     phz = angle(res);
 

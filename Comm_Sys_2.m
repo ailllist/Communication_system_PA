@@ -38,10 +38,11 @@ res = res/scale_fac;
 
 minx = min(x);
 maxx = max(x);
-numofbit = 4;
+numofbit = 3;
 totslot = 2^numofbit;
 step_size = (maxx-minx) / (2*(totslot-1));
 epochs = 10; % num of iteration
+
 % init x hat, a, 많은 case에 대해서도 진행.
 centroids = linspace(minx, maxx, totslot); % xhat
 bounds = linspace(minx+step_size, maxx-step_size, totslot-1); % a
@@ -60,7 +61,7 @@ bins = -5:0.001:5; % bit가 크면, 정밀도를 더 높여줘야 된다.
 
 
 % start lloyd
-for eps=1:1
+for eps=1:10
     % update centroid
     centroids = update_centroid(centroids, bounds, values, edges)
     % update bound

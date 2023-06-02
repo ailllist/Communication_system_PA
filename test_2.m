@@ -1,11 +1,4 @@
-data = [1, 2, 2, 3, 3, 3, 4, 4, 4, 4];  % Example data array
+x = -4*pi:0.1:4*pi;
 
-hist = histogram(data, 'Normalization', 'pdf');  % Compute the histogram and normalize it
-pdf_values = hist.Values;  % Get the PDF values
-
-bin_edges = hist.BinEdges;  % Get the bin edges
-
-bar(bin_edges(1:end-1), pdf_values, 'histc');  % Plot the PDF as a bar chart
-title('Probability Density Function (PDF)');
-xlabel('Data');
-ylabel('PDF');
+fx = -j*exp(-2*pi*x*j);
+stem(x, angle(fx))

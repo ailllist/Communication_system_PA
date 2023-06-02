@@ -1,6 +1,6 @@
-function [t, v] = convolution(x1, x2, s)
+function [t, v] = conv2nd(x1, x2, s)
     % s : unit time
-
+    % 다시 짜야된다.
     % t : domain of conv
     % v : range of conv
 
