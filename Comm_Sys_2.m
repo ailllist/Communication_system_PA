@@ -1,3 +1,4 @@
+
 clc
 close all
 
@@ -48,9 +49,9 @@ x = 5*x1 + 2*x2;  % bandwidth : 150 (100, 150), sinc function 생성
 % input : time sampling value  x
 % output : Quantization value
 
-minx = min(x);  % Quantiazation 값의 initialization을 위한 값
-maxx = max(x);  % Quantiazation 값의 initialization을 위한 값
-numofbit = 16;  % bit의 갯수
+minx = min(x)/2;  % Quantiazation 값의 initialization을 위한 값
+maxx = max(x)/2;  % Quantiazation 값의 initialization을 위한 값
+numofbit = 8;  % bit의 갯수
 totslot = 2^numofbit;  % slot의 수
 step_size = (maxx-minx) / (2*(totslot-1));  % Quantization값에서
 % 가장 가까운 bound까지의 거리
@@ -67,12 +68,12 @@ for i=1:length(x)
     quant_res(i) = centroids(idx);  % 해당 값에 대응시킨다.
 end
 
-figure(1)
-hold on
-stem(t, x)
-stem(t, quant_res)
-legend(["prev", "after"])
-saveas(gcf, "Prob_2/quant_prev_N16_1.png")
+% figure(1)
+% hold on
+% stem(t, x)
+% stem(t, quant_res)
+% legend(["prev", "after"])
+% saveas(gcf, "Prob_2/quant_prev_N16_1.png")
 
 bins = -20:0.0001:20; % bit가 크면, 정밀도를 더 높여줘야 된다.
 % get_pdf
@@ -97,11 +98,11 @@ for eps=1:200
     end
 end
 
-get_SQNR(x, quant_res)
+SQNR = get_SQNR(x, quant_res)
 
-figure(2)
-hold on
-stem(t, x)
-stem(t, quant_res)
-legend(["prev", "after"])
-saveas(gcf, "Prob_2/quant_N16_1.png")
+% figure(2)
+% hold on
+% stem(t, x)
+% stem(t, quant_res)
+% legend(["prev", "after"])
+% saveas(gcf, "Prob_2/quant_N16_1.png")
