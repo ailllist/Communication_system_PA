@@ -66,7 +66,7 @@ imag_sig = imag(transmit_signals);
 % Demodulation Symbol
 Demodulated_sym = zeros(1, len_sym_seq); % Demodulate된 symbol이 들어갈 list
 sym_list = 1:2^symbol_length; % Symbol의 index
-GT = exp(j*((sym_list*pi/2)+pi/4)); % Symbol의 종류
+GT = exp(j*(sym_list*pi/4)); % Symbol의 종류
 for i=1:length(transmit_signals)
     [~, index] = max((1/(2*pi*(sigma^2)))*exp(-abs(transmit_signals(i)-GT)/(2*(sigma^2))));
     % Optimal Detection
